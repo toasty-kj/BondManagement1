@@ -35,10 +35,7 @@ public class BondManagement {
 
         InputLoop inputLoop = new InputLoop();
         GetTable getTable = new GetTable();
-
-
         MenuSel menuSel = new MenuSel();
-
 
         System.out.println("債権の商品在庫管理システム");
         String[] joblist = jobList.jobList();
@@ -56,9 +53,9 @@ public class BondManagement {
                 BufferedReader br = null;
                 switch (funcInt) {
                     case 0:
-                        //<保有銘柄残高一覧表示>
+                        /**<保有銘柄残高一覧表示>
                         //holdingPosition.csv を読み込んで整形表示する
-                        //getTableで書き出す
+                        getTableで書き出す*/
                         getTable.getTable(bondPositionList, masterMap);
                         break;
                     case 1:

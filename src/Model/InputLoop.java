@@ -22,7 +22,7 @@ public class InputLoop {
         //tickerの入力
         String ticker = inputPosition.inputTicker();
         //売り買いの選択
-        int buysell = inputPosition.inputBuySell();
+        int buysell = inputPosition.inputBuySell(ticker);
         //購入or売却量の入力
         BigDecimal amount = inputPosition.inputAmount(ticker, buysell);
         //購入or売却価格の入力

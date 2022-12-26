@@ -37,7 +37,6 @@ public class UpdateMarketData {
 
                     System.out.println(ticker +"[ "+issuer+" ]"+" の現在価格を入力してください。");
                     BigDecimal marketPrice = new BigDecimal(br.readLine());
-                    //書きかけ...
                     BondPosition newPosition = new BondPosition(ticker, checkPosition.amountCheck(ticker), checkPosition.priceCheck(ticker), marketPrice);
                     bondPositionList.set(i, newPosition);
                 }break;

@@ -29,7 +29,6 @@ public class UpdatePosition {
                 int index = checkPosition.getNumRow(ticker);
                 BigDecimal postPurchasedPrice =  bondPositionList.get(index).getPurchasedPrice();
                 BigDecimal postAmount = bondPositionList.get(index).getAmount();
-                System.out.println(postAmount + "*" +postPurchasedPrice + "+" +price +"*"+amount +"="+ (postPurchasedPrice.multiply(postAmount).add(price.multiply(amount))));
                 price = ((postPurchasedPrice.multiply(postAmount).add(price.multiply(amount))).divide(postAmount.add(amount),BigDecimal.ROUND_HALF_UP));
                 amount = postAmount.add(amount);
                 newPosition = new BondPosition(ticker, amount, price, marketPrice);

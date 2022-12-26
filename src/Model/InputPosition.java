@@ -15,15 +15,22 @@ import java.util.HashMap;
 import java.util.List;
 
 public class InputPosition {
-    public int inputBuySell(){
+    public int inputBuySell(String ticker){
         BufferedReader br =new BufferedReader(new InputStreamReader(System.in));
+        CheckPosition checkPosition = new CheckPosition();
         Integer buysell = 0;
         while (true){
             System.out.println("買いなら1,売りなら2を入力してくだい");
             try {
                 buysell = Integer.parseInt(br.readLine());
                 if (buysell<0 || buysell>3){
-                }else {break;}
+                }
+                if (checkPosition.checkExist(ticker)) {
+                    break;
+                }else if (buysell == 2){
+                    System.out.println("その銘柄は保有していないため売ることはできません。");
+                }
+                else {break;}
             } catch (NumberFormatException e){
                 System.out.println("半角で入力してください。");
             }catch (IOException e){
@@ -60,7 +67,7 @@ public class InputPosition {
         String ticker = null;
         while (true){
             try {
-                System.out.println("ティッカーを入力してください。");
+                System.out.println("銘柄コードwを入力してください。");
                 ticker = br.readLine();
                 masterMap = loadMaster.loadBondMaster();
                 if (masterMap.containsKey(ticker)){
@@ -88,27 +95,30 @@ public class InputPosition {
         bondPositionList = loadPosition.loadPosition();
         CheckPosition checkPosition = new CheckPosition();
         BigDecimal amount;
-        BigDecimal currentAmount = bondPositionList.get(checkPosition.getNumRow(ticker)).getAmount();
+        //もし銘柄を持っていないときは買いのみでcurrentAmountもない, existつかうか
         while (true) {
             System.out.println("数量を入力してください。");
             try {
-
                 masterMap = loadMaster.loadBondMaster();
-                //もしcurrent amountがamoutを下回っていたら。
                 amount = new BigDecimal(br.readLine());
-                if (buysell == 1) {
-                    //買いの場合
-                    break;
-                }
-                if (buysell == 2) {
-                    if (currentAmount.compareTo(amount) >= 0) {
+                if (checkPosition.checkExist(ticker)){
+                    BigDecimal currentAmount = bondPositionList.get(checkPosition.getNumRow(ticker)).getAmount();
+                    //もしcurrent amountがamoutを下回っていたら。
+                    if (buysell == 1) {
+                        //買いの場合
                         break;
-                    } else {
-                        System.out.println("保有残高分しか売却することができません");
-                        System.out.println("保有残高 : " + currentAmount);
-                        continue;
                     }
-                }
+                    if (buysell == 2) {
+                        if (currentAmount.compareTo(amount) >= 0) {
+                            break;
+                        } else {
+                            System.out.println("保有残高分しか売却することができません");
+                            System.out.println("保有残高 : " + currentAmount);
+                            continue;
+                        }
+                    }
+                }else {break;}
+
             } catch (IOException e) {
                 continue;
             } catch (NumberFormatException e) {
