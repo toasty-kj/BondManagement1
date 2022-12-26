@@ -3,6 +3,10 @@ import java.math.BigDecimal;
 
 
 public class BondMaster {
+    /**
+     * 債券マスターファイルのクラス
+     * 変数として銘柄コード, 銘柄名, 利回り, 満期, 利払い回数をもつ
+     */
     private String ticker;
     private String issuer;
     private BigDecimal yield;

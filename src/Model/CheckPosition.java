@@ -39,10 +39,7 @@ public class CheckPosition {
         }return currentPrice;
     }
 
-    public Boolean checkExist(String ticker)throws IOException{
-        List<BondPosition> bondPositionList = new ArrayList<>();
-        LoadPosition loadPosition = new LoadPosition();
-        bondPositionList = loadPosition.loadPosition();
+    public Boolean checkExist(String ticker, ArrayList<BondPosition> bondPositionList)throws IOException{
         int existance = 0;
 
         for (int i=0; i<bondPositionList.size(); i++){

@@ -15,7 +15,15 @@ import java.util.List;
 import java.util.Map;
 
 public class LoadMaster {
+    /**
+     * マスターcsvファイル(参照用のファイル)を読み込んでデータをHashMapに格納して返す
+     * @return マスターファイルのHashMap
+     * @throws IOException
+     */
     public HashMap<String, BondMaster> loadBondMaster() throws IOException {
+        /**
+         * マスターcsvファイルを読み込んでHashMapに格納して返す
+         */
         String masterData = "MasterData.csv";
         BufferedReader br = null;
         String[] arrayStr = new String[5];
@@ -43,7 +51,11 @@ public class LoadMaster {
         return masterMap;
     }
 
-    public ArrayList masterHeaderList() {
+    public ArrayList<BondMaster> masterHeaderList() throws IOException {
+        /**
+         * マスターcsvファイルを読み込んで銘柄コードと銘柄名のみを取り出してArrayListに格納する(在庫入力時に
+         * 入力する人が参照してもらうため)
+         */
         String masterData = "MasterData.csv";
         BufferedReader br = null;
         String[] arrayStr = new String[2];
@@ -64,6 +76,8 @@ public class LoadMaster {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
+        }finally {
+            br.close();
         }
     }
 }

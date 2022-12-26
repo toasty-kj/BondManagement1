@@ -17,6 +17,11 @@ import java.util.HashMap;
 import java.util.List;
 
 public class UpdateMarketData {
+    /**
+     * 値洗いを行うupdateMarketDataメソッド
+     * @return 入力してもらった市場価格を反映した保有銘柄リストを返す
+     * @throws IOException
+     */
     public ArrayList<BondPosition>updateMarketData() throws IOException{
         LoadPosition loadPosition = new LoadPosition();
         ArrayList<BondPosition> bondPositionList = new ArrayList<>();
@@ -34,11 +39,13 @@ public class UpdateMarketData {
                 for (int i=0; i < bondPositionList.size(); i++){
                     String ticker = bondPositionList.get(i).getTicker();
                     String issuer = masterMap.get(ticker).getIssuer();
+                    if (bondPositionList.get(i).getAmount().compareTo(BigDecimal.ZERO)>0){
+                        System.out.println(ticker +"[ "+issuer+" ]"+" の現在価格を入力してください。");
+                        BigDecimal marketPrice = new BigDecimal(br.readLine());
+                        BondPosition newPosition = new BondPosition(ticker, checkPosition.amountCheck(ticker), checkPosition.priceCheck(ticker), marketPrice);
+                        bondPositionList.set(i, newPosition);
+                    }
 
-                    System.out.println(ticker +"[ "+issuer+" ]"+" の現在価格を入力してください。");
-                    BigDecimal marketPrice = new BigDecimal(br.readLine());
-                    BondPosition newPosition = new BondPosition(ticker, checkPosition.amountCheck(ticker), checkPosition.priceCheck(ticker), marketPrice);
-                    bondPositionList.set(i, newPosition);
                 }break;
             }
 

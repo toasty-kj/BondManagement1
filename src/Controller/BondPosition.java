@@ -3,6 +3,10 @@ package Controller;
 import java.math.BigDecimal;
 
 public class BondPosition {
+    /**
+     * 保有銘柄のクラス
+     * 変数として銘柄コード, 数量, 簿価, 市場価格を持つ
+     */
     private String ticker;
     private BigDecimal amount;
     private BigDecimal purchasedPrice;

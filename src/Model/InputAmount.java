@@ -12,6 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 
 public class InputAmount {
+    /**
+     * 在庫入力時の数量入力メソッド
+     * 引数の銘柄コードをすでに持っている場合は売り買いで場合分け、持っていない場合は売りのみ
+     * @param ticker 銘柄コード
+     * @param buysell 売り買いの選択
+     * @return 買ったもしくは売った数量
+     * @throws IOException
+     */
     public BigDecimal inputAmount(String ticker, int buysell) throws IOException {
 /**
  * 在庫入力時の数量の入力
@@ -20,7 +28,7 @@ public class InputAmount {
         LoadMaster loadMaster = new LoadMaster();
         HashMap<String, BondMaster> masterMap = new HashMap<>();
         LoadPosition loadPosition = new LoadPosition();
-        List<BondPosition> bondPositionList = new ArrayList<>();
+        ArrayList<BondPosition> bondPositionList = new ArrayList<>();
         bondPositionList = loadPosition.loadPosition();
         CheckPosition checkPosition = new CheckPosition();
         BigDecimal amount;
@@ -30,7 +38,7 @@ public class InputAmount {
             try {
                 masterMap = loadMaster.loadBondMaster();
                 amount = new BigDecimal(br.readLine());
-                if (checkPosition.checkExist(ticker)){
+                if (checkPosition.checkExist(ticker, bondPositionList)){
                     BigDecimal currentAmount = bondPositionList.get(checkPosition.getNumRow(ticker)).getAmount();
                     //もしcurrent amountがamoutを下回っていたら。
                     if (buysell == 1) {

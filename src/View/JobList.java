@@ -1,5 +1,9 @@
 package View;
 public class JobList {
+    /**
+     * 機能のリストを返す
+     * @return　機能のリスト
+     */
     public String[] jobList(){
         String[] joblist;
         joblist = new String[4];

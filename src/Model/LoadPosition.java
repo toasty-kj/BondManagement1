@@ -8,13 +8,14 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LoadPosition {
+    /**
+     * 保有銘柄のcsvファイルを読み込んでArrayListに格納して返す
+     * @return 保有銘柄リスト
+     * @throws IOException
+     */
     public ArrayList<BondPosition> loadPosition()throws IOException{
         String filePosition = "HoldingPosition.csv";
         BufferedReader br=null;

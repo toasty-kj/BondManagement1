@@ -9,21 +9,21 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.lang.String;
 
 public class GetTable {
-    public void  getTable(List<BondPosition> bondPositionList, Map<String, BondMaster> masterMap) throws IOException {
+    public void  getTable(ArrayList<BondPosition> bondPositionList, Map<String, BondMaster> masterMap) throws IOException {
         /**整形表示する表の中身を表示する。
          * 表示するのは銘柄コード,銘柄名、償還年月日、利率、クーポン回数、保有数量、簿価、時価、評価損益
-        銘柄コードからmapの銘柄名、年月、利率、クーポン回数を取り出して
-        Listのほうから保有数量、簿価、時価、評価損益を取り出す。*/
+         **銘柄コードからmapの銘柄名、年月、利率、クーポン回数を取り出して
+         *Listのほうから保有数量、簿価、時価、評価損益を取り出す。
+         * @param bondPositionList 保有銘柄リスト
+         * @param masterMap マスターファイル
+         */
         Separation separation = new Separation();
         GetTableHeader getTableHeader = new GetTableHeader();
-        LoadMaster loadMaster = new LoadMaster();
-        LoadPosition loadPosition = new LoadPosition();
         DecimalFormat df = new DecimalFormat("###,###,###");
         String ticker;
 
@@ -47,7 +47,6 @@ public class GetTable {
                         subtract = marketPrice.subtract(purchasedPrice);
                         profitLoss = subtract.multiply(amount);
                     }
-
                     System.out.print("|");
                     System.out.print(String.format("%-15s",ticker)+"|");
                     System.out.print(issuer);
@@ -66,14 +65,13 @@ public class GetTable {
                     }
                     System.out.print("|");
                     System.out.print(String.format("%15s",maturity)+"|");
-                    System.out.print(String.format("%-9s",yield)+"|");
+                    System.out.print(String.format("%9s",yield)+"|");
                     System.out.print(String.format("%17s",coupon)+"|");
-                    System.out.print(String.format("%-13s",df.format(amount))+"|");
-                    System.out.print(String.format("%-9s", df.format(purchasedPrice))+"|");
-                    System.out.print(String.format("%-9s",df.format(marketPrice))+"|");
-                    System.out.print(String.format("%-8s",df.format(profitLoss)));
+                    System.out.print(String.format("%13s",df.format(amount))+"|");
+                    System.out.print(String.format("%9s", df.format(purchasedPrice))+"|");
+                    System.out.print(String.format("%9s",df.format(marketPrice))+"|");
+                    System.out.print(String.format("%8s",df.format(profitLoss)));
                     System.out.println("|");
-
                 }
             }catch (NullPointerException e){
                 i++;
@@ -82,5 +80,4 @@ public class GetTable {
         //System.out.print(String.format("%-6s",));
         separation.sep();
     }
-
 }

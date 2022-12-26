@@ -13,11 +13,23 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class BondManagement {
+    /**
+     * 債券管理のアプリ。
+     * @param args
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
+        /**
+         * mainLoopの処理を行う。
+         */
         BondManagement bondManagement = new BondManagement();
         bondManagement.mainLoop();
     }
     public void mainLoop()throws IOException {
+        /**
+         * 実際の処理を行う
+         * メニュー画面を表示して選択された機能を実行する。
+         */
         JobList jobList = new JobList();
         ArrayList<BondPosition> bondPositionList = new ArrayList<>();
         HashMap<String, BondMaster> masterMap = new HashMap<>();
@@ -28,7 +40,6 @@ public class BondManagement {
         UpdateMarketData updateMarketData = new UpdateMarketData();
         ReWriteCSV reWriteCSV = new ReWriteCSV();
         FuncPrint funcPrint = new FuncPrint();
-
         InputLoop inputLoop = new InputLoop();
         GetTable getTable = new GetTable();
         MenuSel menuSel = new MenuSel();
@@ -37,8 +48,6 @@ public class BondManagement {
         String[] joblist = jobList.jobList();
         String starting = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
         String ending = "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
-        String masterData = "MasterData.csv";
-        String holdingPosition = "HoldingPosition.csv";
 
         Integer funcInt;
         boolean NumberFormatException = false;
@@ -50,28 +59,27 @@ public class BondManagement {
                 switch (funcInt) {
                     case 0:
                         /**<保有銘柄残高一覧表示>
-                        //holdingPosition.csv を読み込んで整形表示する
-                        getTableで書き出す*/
+                        *holdingPosition.csv を読み込んで整形表示する
+                        *getTableで書き出す*/
                         getTable.getTable(bondPositionList, masterMap);
                         break;
                     case 1:
                         /**<在庫入力>
-                         入力後保有銘柄リストに返す
+                         *入力後保有銘柄リストに返す
                          */
-                        bondPositionList = inputLoop.inputLoop(funcInt);
+                        bondPositionList = inputLoop.inputLoop(funcInt, bondPositionList);
                         reWriteCSV.reWriteCSV(bondPositionList);
                         break;
                     case 2:
                         /**値洗い
-                         市場価格を入力後リストに返す。
-                         csvには反映させない。
+                         *市場価格を入力後リストに返す。
+                         *csvには反映させない。
                          */
                         funcPrint.funcPrint(funcInt);
                         bondPositionList = updateMarketData.updateMarketData();
                         break;
                     case 3:
-                        /**終了
-                         */
+                        /**終了*/
                         System.out.println(starting);
                         System.out.println(joblist[funcInt]);
                         reWriteCSV.reWriteCSV(bondPositionList);

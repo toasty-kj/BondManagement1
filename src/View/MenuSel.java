@@ -8,6 +8,11 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 
 public class MenuSel {
+    /**
+     * メニューを表示して選択してもらう
+     * @return 選択してもらったメニューの番号を返す
+     * @throws IOException
+     */
     public int menuSel()throws IOException {
         JobList jobList = new JobList();
         String[] joblist = jobList.jobList();
