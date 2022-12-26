@@ -1,5 +1,7 @@
-package Controller;
+package Model;
 
+import Controller.BondMaster;
+import Controller.BondPosition;
 import Model.CheckPosition;
 import Model.LoadMaster;
 import Model.LoadPosition;
@@ -15,9 +17,9 @@ import java.util.HashMap;
 import java.util.List;
 
 public class UpdateMarketData {
-    public List<BondPosition>updateMarketData() throws IOException{
+    public ArrayList<BondPosition>updateMarketData() throws IOException{
         LoadPosition loadPosition = new LoadPosition();
-        List<BondPosition> bondPositionList = new ArrayList<>();
+        ArrayList<BondPosition> bondPositionList = new ArrayList<>();
         bondPositionList = loadPosition.loadPosition();
         LoadMaster loadMaster = new LoadMaster();
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -38,7 +40,7 @@ public class UpdateMarketData {
                     //書きかけ...
                     BondPosition newPosition = new BondPosition(ticker, checkPosition.amountCheck(ticker), checkPosition.priceCheck(ticker), marketPrice);
                     bondPositionList.set(i, newPosition);
-                }
+                }break;
             }
 
         }catch (IOException e){

@@ -1,19 +1,22 @@
 package Model;
 
+import Controller.BondPosition;
 import Controller.InputPosition;
 import View.FuncPrint;
 import View.JobList;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 
 public class InputLoop {
-    public void inputLoop(int funcInt) throws IOException {
+    public ArrayList inputLoop(int funcInt) throws IOException {
         String masterData = "MasterData.csv";
         String holdingPosition = "HoldingPosition.csv";
         FuncPrint funcPrint = new FuncPrint();
         InputPosition inputPosition = new InputPosition();
         UpdatePosition updatePosition = new UpdatePosition();
+        ArrayList<BondPosition> bondPositionList = new ArrayList<>();
         //jobの名前のprint
         funcPrint.funcPrint(funcInt);
         //tickerの入力
@@ -25,6 +28,8 @@ public class InputLoop {
         //購入or売却価格の入力
         BigDecimal purchasedPrice = inputPosition.inputPrice(buysell);
         //Listの更新
-        updatePosition.updatePosition(ticker, buysell, amount,purchasedPrice);
+        bondPositionList = updatePosition.updatePosition(ticker, buysell, amount,purchasedPrice);
+
+        return bondPositionList;
     }
 }

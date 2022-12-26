@@ -43,7 +43,7 @@ public class CheckPosition {
             if (bondPositionList.get(i).getTicker().equals(ticker)){
                 existance = 1;
             }
-        }if (existance ==1){
+        }if (existance == 1){
             return Boolean.TRUE;
         }else {
             return Boolean.FALSE;

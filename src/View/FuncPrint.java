@@ -10,6 +10,5 @@ public class FuncPrint {
         System.out.println(starting);
         System.out.println(joblist[funcInt]);
         System.out.println(ending);
-        System.out.println(starting);
     }
 }
