@@ -15,6 +15,7 @@ public class InputLoop {
         String holdingPosition = "HoldingPosition.csv";
         FuncPrint funcPrint = new FuncPrint();
         InputPosition inputPosition = new InputPosition();
+        InputAmount inputAmount = new InputAmount();
         UpdatePosition updatePosition = new UpdatePosition();
         ArrayList<BondPosition> bondPositionList = new ArrayList<>();
         //jobの名前のprint
@@ -24,7 +25,7 @@ public class InputLoop {
         //売り買いの選択
         int buysell = inputPosition.inputBuySell(ticker);
         //購入or売却量の入力
-        BigDecimal amount = inputPosition.inputAmount(ticker, buysell);
+        BigDecimal amount = inputAmount.inputAmount(ticker, buysell);
         //購入or売却価格の入力
         BigDecimal purchasedPrice = inputPosition.inputPrice(buysell);
         //Listの更新
