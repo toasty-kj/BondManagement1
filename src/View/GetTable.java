@@ -16,9 +16,10 @@ import java.lang.String;
 
 public class GetTable {
     public void  getTable(List<BondPosition> bondPositionList, Map<String, BondMaster> masterMap) throws IOException {
-        //表示するのは銘柄コード,銘柄名、償還年月日、利率、クーポン回数、保有数量、簿価、時価、評価損益
-        //銘柄コードからmapの銘柄名、年月、利率、クーポン回数を取り出して
-        //Listのほうから保有数量、簿価、時価、評価損益を取り出す。
+        /**整形表示する表の中身を表示する。
+         * 表示するのは銘柄コード,銘柄名、償還年月日、利率、クーポン回数、保有数量、簿価、時価、評価損益
+        銘柄コードからmapの銘柄名、年月、利率、クーポン回数を取り出して
+        Listのほうから保有数量、簿価、時価、評価損益を取り出す。*/
         Separation separation = new Separation();
         GetTableHeader getTableHeader = new GetTableHeader();
         LoadMaster loadMaster = new LoadMaster();

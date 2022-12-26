@@ -9,6 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CheckPosition {
+    /**
+     * 保有銘柄リストを参照して残高、簿価もしくは保有の有無を確認する
+     * @param ticker
+     * @return
+     * @throws IOException
+     */
     public BigDecimal amountCheck (String ticker) throws IOException {
         LoadPosition loadPosition = new LoadPosition();
         List<BondPosition> bondPositionList = new ArrayList<>();
@@ -50,6 +56,7 @@ public class CheckPosition {
         }
     }
     public int getNumRow(String ticker)throws IOException{
+        //保有銘柄リストの何番目に引数として与えられたtickerがあるか調べてそのindexを返す
         List<BondPosition> bondPositionList = new ArrayList<>();
         LoadPosition loadPosition = new LoadPosition();
         bondPositionList = loadPosition.loadPosition();

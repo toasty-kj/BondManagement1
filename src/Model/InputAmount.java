@@ -13,7 +13,9 @@ import java.util.List;
 
 public class InputAmount {
     public BigDecimal inputAmount(String ticker, int buysell) throws IOException {
-
+/**
+ * 在庫入力時の数量の入力
+ */
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         LoadMaster loadMaster = new LoadMaster();
         HashMap<String, BondMaster> masterMap = new HashMap<>();
@@ -22,7 +24,7 @@ public class InputAmount {
         bondPositionList = loadPosition.loadPosition();
         CheckPosition checkPosition = new CheckPosition();
         BigDecimal amount;
-        //もし銘柄を持っていないときは買いのみでcurrentAmountもない, existつかうか
+        /**もし銘柄を持っていないときは買いのみのため売りは考えない*/
         while (true) {
             System.out.println("数量を入力してください。");
             try {

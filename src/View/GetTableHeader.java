@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class GetTableHeader {
     public void  getTableHeader(){
-        //表示するのは銘柄コード,銘柄名、償還年月日、利率、クーポン回数、保有数量、簿価、時価、評価損益
-        //銘柄コードからmapの銘柄名、年月、利率、クーポン回数を取り出して
-        //Listのほうから保有数量、簿価、時価、評価損益を取り出す。
+        /**ヘッダーを表示する
+         * 表示するのは銘柄コード,銘柄名、償還年月日、利率、クーポン回数、保有数量、簿価、時価、評価損益
+        */
         Separation separation = new Separation();
         String starting = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
         String ending = "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
@@ -35,6 +35,9 @@ public class GetTableHeader {
         separation.sep();
     }
     public void getMasterHeader(ArrayList<BondMaster> masterHeaderList){
+        /**
+         * マスターファイルのティッカーと銘柄名を表示する
+         */
         Separation separation = new Separation();
         separation.sep();
         for (int i=0; i< masterHeaderList.size(); i++){

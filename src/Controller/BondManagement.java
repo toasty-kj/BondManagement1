@@ -20,10 +20,6 @@ public class BondManagement {
     public void mainLoop()throws IOException {
         JobList jobList = new JobList();
         ArrayList<BondPosition> bondPositionList = new ArrayList<>();
-        //BondPosition bondPosition = new BondPosition;
-        //LoadPosition loadPosition = new LoadPosition();
-        BigDecimal t = new BigDecimal(0.0);
-        BondMaster bondMaster = new BondMaster("", "", t, 0, 0);
         HashMap<String, BondMaster> masterMap = new HashMap<>();
         LoadMaster loadMaster = new LoadMaster();
         masterMap = loadMaster.loadBondMaster();
@@ -59,17 +55,23 @@ public class BondManagement {
                         getTable.getTable(bondPositionList, masterMap);
                         break;
                     case 1:
-                        //<在庫入力>
+                        /**<在庫入力>
+                         入力後保有銘柄リストに返す
+                         */
                         bondPositionList = inputLoop.inputLoop(funcInt);
                         reWriteCSV.reWriteCSV(bondPositionList);
                         break;
                     case 2:
-                        //値洗い
+                        /**値洗い
+                         市場価格を入力後リストに返す。
+                         csvには反映させない。
+                         */
                         funcPrint.funcPrint(funcInt);
                         bondPositionList = updateMarketData.updateMarketData();
                         break;
                     case 3:
-                        //終了
+                        /**終了
+                         */
                         System.out.println(starting);
                         System.out.println(joblist[funcInt]);
                         reWriteCSV.reWriteCSV(bondPositionList);

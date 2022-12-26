@@ -13,6 +13,9 @@ import java.util.List;
 
 public class UpdatePosition {
     public ArrayList updatePosition(String ticker, int buysell, BigDecimal amount, BigDecimal price) throws InaccessibleObjectException, IOException {
+        /**
+         * 在庫入力されたデータを保有銘柄のArrayListに追加する
+         */
         LoadPosition loadPosition = new LoadPosition();
         ArrayList<BondPosition> bondPositionList = new ArrayList<>();
         CheckPosition checkPosition = new CheckPosition();
@@ -22,7 +25,9 @@ public class UpdatePosition {
             int index = checkPosition.getNumRow(ticker);
         }catch (IOException e){
             System.out.println("ファイルの読み込みに失敗しました。");
-        }
+        }/**買いのときは移動平均簿価を計算する必要がある。
+         買う銘柄が既に保有している場合としていない場合で場合分けした。
+         */
         if (buysell == 1){
             BondPosition newPosition = new BondPosition(ticker, amount, price, marketPrice);
             if (checkPosition.checkExist(ticker)){
@@ -37,7 +42,8 @@ public class UpdatePosition {
                 bondPositionList.add(newPosition);
             }
 
-        }
+        }/**売りの場合は簿価は変化しないため場合分けしない
+         */
         else if (buysell == 2) {
             int index;
             try {
@@ -56,6 +62,5 @@ public class UpdatePosition {
 
         }return bondPositionList;
 
-    }//買いのときは保有している場合としていない場合に分ける必要がある
-    //売りの場合は保有している銘柄のみなのでtickerを引数にしてgetNumRowからindexなどのデータを取り出してamount, priceを変更する
+    }
 }
