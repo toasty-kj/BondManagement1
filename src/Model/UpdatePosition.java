@@ -61,7 +61,7 @@ public class UpdatePosition {
             } catch (IOException e) {
                 System.out.println("インデックスの取得に失敗しました。");
             }
-
+            System.out.println("入力が完了しました。");
         }return bondPositionList;
 
     }

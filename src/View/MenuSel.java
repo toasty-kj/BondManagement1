@@ -18,6 +18,7 @@ public class MenuSel {
         String[] joblist = jobList.jobList();
         String starting = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
         String ending = "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
+        System.out.println(starting);
         System.out.println("下記のメニューから行いたい数字を入力してください。");
         for (int i=0; i< joblist.length; i++){
             System.out.println(i+". "+joblist[i]);

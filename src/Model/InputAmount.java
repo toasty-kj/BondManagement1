@@ -49,8 +49,8 @@ public class InputAmount {
                         if (currentAmount.compareTo(amount) >= 0) {
                             break;
                         } else {
-                            System.out.println("保有残高分しか売却することができません");
-                            System.out.println("保有残高 : " + currentAmount);
+                            System.out.println("保有数量分しか売却する減らせません。");
+                            System.out.println("保有数量 : " + currentAmount);
                             continue;
                         }
                     }

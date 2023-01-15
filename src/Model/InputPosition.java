@@ -29,7 +29,7 @@ public class InputPosition {
         CheckPosition checkPosition = new CheckPosition();
         Integer buysell = 0;
         while (true){
-            System.out.println("買いなら1,売りなら2を入力してくだい");
+            System.out.println("在庫を増やすなら1,減らすなら2を入力してください");
             try {
                 buysell = Integer.parseInt(br.readLine());
                 if (buysell<0 || buysell>3){
@@ -41,7 +41,7 @@ public class InputPosition {
                 }
                 else {break;}
             } catch (NumberFormatException e){
-                System.out.println("半角で入力してください。");
+                System.out.println("半角数字で入力してください。");
             }catch (IOException e){
                 System.out.println(e);
             }
@@ -55,17 +55,18 @@ public class InputPosition {
         BigDecimal price;
         while (true){
             if (buysell == 1) {
-                System.out.println("購入金額を入力してください。");
+                System.out.println("簿価を入力してください。");
             }
             else if (buysell == 2){
-                System.out.println("売却価格を入力してください。");
+                System.out.println("簿価を入力してください。");
             }
             try {
                 price = new BigDecimal(br.readLine());
                 if (price.compareTo(new BigDecimal("0"))>0 && price.compareTo(new BigDecimal("999999"))<0 ){break;}
             }catch (IOException e){
+                System.out.println("簿価は半角数字で正の数を入力してください。");
             }catch (NumberFormatException e){
-                System.out.println("半角で購入金額を入力してください。");
+                System.out.print("半角数字");
             }
         }
         return price;

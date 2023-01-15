@@ -36,8 +36,8 @@ public class LoadMaster {
                 arrayStr = message.split(",");
                 String ticker = arrayStr[0];
                 String issuer = arrayStr[1];
-                BigDecimal yield = new BigDecimal(arrayStr[3]);
-                int maturity = Integer.parseInt(arrayStr[2]);
+                BigDecimal yield = new BigDecimal(arrayStr[2]);
+                int maturity = Integer.parseInt(arrayStr[3]);
                 int coupon = Integer.parseInt(arrayStr[4]);
                 BondMaster masterobject = new BondMaster(ticker, issuer, yield, maturity, coupon);
                 masterMap.put(ticker, masterobject);

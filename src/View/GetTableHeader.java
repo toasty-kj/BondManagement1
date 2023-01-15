@@ -9,7 +9,7 @@ public class GetTableHeader {
         /**ヘッダーを表示する
          * 表示するのは銘柄コード,銘柄名、償還年月日、利率、クーポン回数、保有数量、簿価、時価、評価損益
         */
-        Separation separation = new Separation();
+        ValueNA.Separation separation = new ValueNA.Separation();
         String starting = ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>";
         String ending = "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<";
         String[] headline = new String[9];
@@ -21,7 +21,7 @@ public class GetTableHeader {
         headline[5] = "保有数量";
         headline[6] = "簿価";
         headline[7] = "時価";
-        headline[8] = "評価損益";
+        headline[8] = "　評価損益　";
 
         System.out.println("保有銘柄残高一覧表示");
         separation.sep();
@@ -38,7 +38,7 @@ public class GetTableHeader {
         /**
          * マスターファイルのティッカーと銘柄名を表示する
          */
-        Separation separation = new Separation();
+        ValueNA.Separation separation = new ValueNA.Separation();
         separation.sep();
         for (int i=0; i< masterHeaderList.size(); i++){
             String ticker = masterHeaderList.get(i).getTicker();
